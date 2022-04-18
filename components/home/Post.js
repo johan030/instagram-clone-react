@@ -1,13 +1,39 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Divider } from "react-native-elements";
+
+const postFooterIcons = [
+  {
+    name: 'Like',
+    imageUrl: 'https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/ffffff/external-like-feedback-kmg-design-detailed-outline-kmg-design.png',
+    likedImageUrl: 'https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/4a90e2/external-like-feedback-kmg-design-detailed-outline-kmg-design.png'
+  },
+{
+  name: 'Comment',
+  imageUrl: 'https://img.icons8.com/dotty/80/ffffff/comment-discussion.png'
+},
+{
+  name: 'Share',
+  imageUrl: 'https://img.icons8.com/glyph-neue/64/ffffff/share.png'
+},
+{
+  name: 'Save',
+  imageUrl: 'https://img.icons8.com/ios/50/ffffff/save--v1.png'
+},
+
+]
+
+
 
 const Post = ({ post }) => {
   return (
     <View style={{ marginBottom: 30 }}>
       <Divider width={1} orientation="vertical" />
       <PostHeader post={post} />
-      <PostImage post={post} />
+      <PostImage post={post} /> 
+      <View style = {{marginHorizontal: 15, marginTop: 10 }}>
+      <PostFooter />
+      </View>
     </View>
   );
 };
@@ -36,11 +62,36 @@ const PostHeader = ({ post }) => (
 // POST IMAGE
 
 const PostImage = ({ post }) => (
-  <Image
-    source={{ uri: post.imageUrl }}
-    style={{ height: "100%", resizeMode: "cover" }}
-  />
-);
+  <View style={{ width: "100%", height: 450 }}>
+    <Image
+      source={{ uri: post.imageUrl }}
+      style={{ height: "100%", resizeMode: "cover" }}
+    />
+  </View>
+)
+// POST FOOTER
+
+const PostFooter = () => (
+  <View style = {{ flexDirection: 'row', justifyContent: 'space-between' }}>
+    <View style = { styles.leftFooterIconsContainer}>
+    <Icon imgStyle={ styles.footerIcon } imgUrl = { postFooterIcons[0].imageUrl} ></Icon>
+    <Icon imgStyle={ styles.footerIcon } imgUrl = { postFooterIcons[1].imageUrl} ></Icon>
+    <Icon imgStyle={ styles.footerIcon } imgUrl = { postFooterIcons[2].imageUrl} ></Icon>
+    </View>
+
+    <View>
+      <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[3].imageUrl}></Icon>
+    </View>
+  </View>
+
+)
+
+const Icon = ({ imgStyle, imgUrl }) => (
+  <TouchableOpacity>
+    <Image style = {imgStyle} source = {{ uri: imgUrl}} />
+  </TouchableOpacity>
+)
+
 
 const styles = StyleSheet.create({
   story: {
@@ -51,6 +102,19 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: "#ff8501",
   },
+
+  footerIcon: {
+    width: 33,
+    height: 33,
+  },
+
+  leftFooterIconsContainer: {
+    flexDirection : 'row',
+    width: '32%',
+    justifyContent: 'space-between',
+
+  }
 });
+
 
 export default Post;
