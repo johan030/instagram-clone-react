@@ -4,36 +4,36 @@ import { Divider } from "react-native-elements";
 
 const postFooterIcons = [
   {
-    name: 'Like',
-    imageUrl: 'https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/ffffff/external-like-feedback-kmg-design-detailed-outline-kmg-design.png',
-    likedImageUrl: 'https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/4a90e2/external-like-feedback-kmg-design-detailed-outline-kmg-design.png'
+    name: "Like",
+    imageUrl:
+      "https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/ffffff/external-like-feedback-kmg-design-detailed-outline-kmg-design.png",
+    likedImageUrl:
+      "https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/4a90e2/external-like-feedback-kmg-design-detailed-outline-kmg-design.png",
   },
-{
-  name: 'Comment',
-  imageUrl: 'https://img.icons8.com/dotty/80/ffffff/comment-discussion.png'
-},
-{
-  name: 'Share',
-  imageUrl: 'https://img.icons8.com/glyph-neue/64/ffffff/share.png'
-},
-{
-  name: 'Save',
-  imageUrl: 'https://img.icons8.com/ios/50/ffffff/save--v1.png'
-},
-
-]
-
-
+  {
+    name: "Comment",
+    imageUrl: "https://img.icons8.com/dotty/80/ffffff/comment-discussion.png",
+  },
+  {
+    name: "Share",
+    imageUrl: "https://img.icons8.com/glyph-neue/64/ffffff/share.png",
+  },
+  {
+    name: "Save",
+    imageUrl: "https://img.icons8.com/ios/50/ffffff/save--v1.png",
+  },
+];
 
 const Post = ({ post }) => {
   return (
     <View style={{ marginBottom: 30 }}>
       <Divider width={1} orientation="vertical" />
       <PostHeader post={post} />
-      <PostImage post={post} /> 
-      <View style = {{marginHorizontal: 15, marginTop: 10 }}>
-      <PostFooter />
-      <Likes post = {post} />
+      <PostImage post={post} />
+      <View style={{ marginHorizontal: 15, marginTop: 10 }}>
+        <PostFooter />
+        <Likes post={post} />
+        <Caption post={post} />
       </View>
     </View>
   );
@@ -69,38 +69,57 @@ const PostImage = ({ post }) => (
       style={{ height: "100%", resizeMode: "cover" }}
     />
   </View>
-)
+);
 // POST FOOTER
 
 const PostFooter = () => (
-  <View style = {{ flexDirection: 'row', justifyContent: 'space-between' }}>
-    <View style = { styles.leftFooterIconsContainer}>
-    <Icon imgStyle={ styles.footerIcon } imgUrl = { postFooterIcons[0].imageUrl} ></Icon>
-    <Icon imgStyle={ styles.footerIcon } imgUrl = { postFooterIcons[1].imageUrl} ></Icon>
-    <Icon imgStyle={ styles.footerIcon } imgUrl = { postFooterIcons[2].imageUrl} ></Icon>
+  <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+    <View style={styles.leftFooterIconsContainer}>
+      <Icon
+        imgStyle={styles.footerIcon}
+        imgUrl={postFooterIcons[0].imageUrl}
+      ></Icon>
+      <Icon
+        imgStyle={styles.footerIcon}
+        imgUrl={postFooterIcons[1].imageUrl}
+      ></Icon>
+      <Icon
+        imgStyle={styles.footerIcon}
+        imgUrl={postFooterIcons[2].imageUrl}
+      ></Icon>
     </View>
 
     <View>
-      <Icon imgStyle={styles.footerIcon} imgUrl={postFooterIcons[3].imageUrl}></Icon>
+      <Icon
+        imgStyle={styles.footerIcon}
+        imgUrl={postFooterIcons[3].imageUrl}
+      ></Icon>
     </View>
   </View>
-
-)
+);
 
 const Icon = ({ imgStyle, imgUrl }) => (
   <TouchableOpacity>
-    <Image style = {imgStyle} source = {{ uri: imgUrl}} />
+    <Image style={imgStyle} source={{ uri: imgUrl }} />
   </TouchableOpacity>
-)
+);
 
-
-const Likes = ({ post}) => (
-  <View style= {{flexDirection: 'row', marginTop: 10 }}>
-    <Text style = {{color: 'white', fontWeight: '600'}}>
-      {post.likes.toLocaleString('en')} likes</Text>
+const Likes = ({ post }) => (
+  <View style={{ flexDirection: "row", marginTop: 10 }}>
+    <Text style={{ color: "white", fontWeight: "600" }}>
+      {post.likes.toLocaleString("en")} likes
+    </Text>
   </View>
-  
-)
+);
+
+const Caption = ({ post }) => (
+  <View style = {{ marginTop: 5 }}>
+    <Text style={{ color: "white" }}>
+      <Text style={{ fontWeight: "600" }}>{post.user}</Text>
+      <Text> {post.caption}</Text>
+    </Text>
+  </View>
+);
 
 const styles = StyleSheet.create({
   story: {
@@ -118,12 +137,10 @@ const styles = StyleSheet.create({
   },
 
   leftFooterIconsContainer: {
-    flexDirection : 'row',
-    width: '32%',
-    justifyContent: 'space-between',
-
-  }
+    flexDirection: "row",
+    width: "32%",
+    justifyContent: "space-between",
+  },
 });
-
 
 export default Post;
