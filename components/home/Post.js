@@ -33,6 +33,7 @@ const Post = ({ post }) => {
       <PostImage post={post} /> 
       <View style = {{marginHorizontal: 15, marginTop: 10 }}>
       <PostFooter />
+      <Likes post = {post} />
       </View>
     </View>
   );
@@ -92,6 +93,14 @@ const Icon = ({ imgStyle, imgUrl }) => (
   </TouchableOpacity>
 )
 
+
+const Likes = ({ post}) => (
+  <View style= {{flexDirection: 'row', marginTop: 10 }}>
+    <Text style = {{color: 'white', fontWeight: '600'}}>
+      {post.likes.toLocaleString('en')} likes</Text>
+  </View>
+  
+)
 
 const styles = StyleSheet.create({
   story: {
