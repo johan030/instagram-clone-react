@@ -34,6 +34,7 @@ const Post = ({ post }) => {
         <PostFooter />
         <Likes post={post} />
         <Caption post={post} />
+        <CommentsSection post={post} />
       </View>
     </View>
   );
@@ -120,6 +121,17 @@ const Caption = ({ post }) => (
     </Text>
   </View>
 );
+
+const CommentsSection = ({ post}) => (
+  <View style ={{ marginTop: 5 }} >
+  <Text style = {{ color: 'gray'}}>
+
+    View{post.comments.length > 1 ? ' all' : ''} {post.comments.length}{ ' '}  
+    {post.comments.length > 1 ? 'comments ' : 'comment'}
+  </Text>
+  </View>
+
+)
 
 const styles = StyleSheet.create({
   story: {
