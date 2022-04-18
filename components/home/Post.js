@@ -35,6 +35,7 @@ const Post = ({ post }) => {
         <Likes post={post} />
         <Caption post={post} />
         <CommentsSection post={post} />
+        <Comments post={post} />
       </View>
     </View>
   );
@@ -114,7 +115,7 @@ const Likes = ({ post }) => (
 );
 
 const Caption = ({ post }) => (
-  <View style = {{ marginTop: 5 }}>
+  <View style={{ marginTop: 5 }}>
     <Text style={{ color: "white" }}>
       <Text style={{ fontWeight: "600" }}>{post.user}</Text>
       <Text> {post.caption}</Text>
@@ -122,16 +123,34 @@ const Caption = ({ post }) => (
   </View>
 );
 
-const CommentsSection = ({ post}) => (
-  <View style ={{ marginTop: 5 }} >
-  <Text style = {{ color: 'gray'}}>
-
-    View{post.comments.length > 1 ? ' all' : ''} {post.comments.length}{ ' '}  
-    {post.comments.length > 1 ? 'comments ' : 'comment'}
-  </Text>
+// if more than 1 comment then display the word all or nothing
+//if more than 1 comment then display the word comments if not display comment
+// !!post.comments.length &&  conditional render . if comment exist then display else hide
+const CommentsSection = ({ post }) => (
+  <View style={{ marginTop: 5 }}>
+    {post.comments.length && (
+      <Text style={{ color: "gray" }}>
+        View{post.comments.length > 1 ? " all" : ""} {post.comments.length}{" "}
+        {post.comments.length > 1 ? "comments " : "comment"}
+      </Text>
+    )}
   </View>
+);
 
-)
+//what the fuck is this <> </>
+const Comments = ({ post }) => (
+  <>
+    {post.comments.map((comment, index) => (
+      <View key={index}>
+        <Text style={{ color: "white" }}>
+          <Text style={{ fontWeight: " 600" }}>{comment.user}</Text>
+          {comment.comment}
+        </Text>
+        
+      </View>
+    ))}
+  </>
+);
 
 const styles = StyleSheet.create({
   story: {
