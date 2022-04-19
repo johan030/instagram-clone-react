@@ -3,17 +3,17 @@ import React from "react";
 import { TouchableOpacity } from "react-native-web";
 import FormikPostUploader from "./FormikPostUploader";
 
-const AddNewPost = () => (
+const AddNewPost = ({navigation}) => (
 <View style={ styles.container }>
-    <Header />
+    <Header navigation={navigation} />
     <FormikPostUploader />
 </View>
 
 )
 
-const Header = () => (
+const Header = ({ navigation }) => (
     <View style={styles.headerContainer}>
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.back('header')}>
       <Image
         source={{
           uri: "https://img.icons8.com/ios-filled/50/ffffff/double-left.png",

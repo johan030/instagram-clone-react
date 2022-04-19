@@ -3,7 +3,7 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native-web'
 
 
-const Header = () => {
+const Header = ({navigation}) => {
   return (
     <View style={styles.container}>
         <TouchableOpacity>
@@ -11,7 +11,7 @@ const Header = () => {
         </TouchableOpacity>
         
         <View style={styles.iconsContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push('NewPostScreen')}>  
           <Image source = {{ uri: 'https://img.icons8.com/ios-glyphs/30/ffffff/macos-maximize.png'}}
           style = {styles.icon}/>
           </TouchableOpacity>
