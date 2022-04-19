@@ -2,6 +2,7 @@ import { View, Text, Image, TextInput } from "react-native";
 import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
+import { Button, Divider } from "react-native-elements";
 
 const PLACEHOLDER_IMG = "https://img.icons8.com/ios/50/ffffff/ios-logo.png";
 
@@ -21,6 +22,7 @@ const FormikPostUploader = () => {
       }}
       onSubmit={(values) => console.log(values)}
       validationSchema={uploadPostSchema}
+      validateOnMount={true}
     >
       {({
         handleBlur,
@@ -47,19 +49,23 @@ const FormikPostUploader = () => {
                 height: 100,
               }}
             />
-            <TextInput
-              style={{
-                color: "white",
-                fontSize: 20,
-              }}
-              placeholder="write a caption"
-              placeholderTextColor="gray"
-              multiline={true}
-              onChangeText={handleChange("caption")}
-              onBlur={handleBlur("caption")}
-              value={values.caption}
-            />
+
+            <View style={{ flex: 1, marginLeft: 20 }}>
+              <TextInput
+                style={{
+                  color: "white",
+                  fontSize: 20,
+                }}
+                placeholder="write a caption"
+                placeholderTextColor="gray"
+                multiline={true}
+                onChangeText={handleChange("caption")}
+                onBlur={handleBlur("caption")}
+                value={values.caption}
+              />
+            </View>
           </View>
+          <Divider width={0.2} orientation="vertical" />
           <TextInput
             style={{
               color: "white",
@@ -71,6 +77,12 @@ const FormikPostUploader = () => {
             onBlur={handleBlur("imageUrl")}
             value={values.imageUrl}
           />
+          {errors.imageUrl && (
+            <Text style={{fontSize: 10, color: 'red' }}>
+                {errors.imageUrl}
+            </Text>
+          )}
+          <Button onPress={handleSubmit} title='Share' disabled={!isValid} />
         </>
       )}
     </Formik>
