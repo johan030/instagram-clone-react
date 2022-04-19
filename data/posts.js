@@ -21,7 +21,7 @@ export const POSTS = [
 
     {
         imageUrl: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-        user: USERS[1].user,
+        user: USERS[2].user,
         likes: 7870,
         caption: 'Train Ride to Hogwarts',
         profile_picture: USERS[1].image,
