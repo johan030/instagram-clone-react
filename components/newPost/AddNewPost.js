@@ -6,14 +6,14 @@ import FormikPostUploader from "./FormikPostUploader";
 const AddNewPost = ({navigation}) => (
 <View style={ styles.container }>
     <Header navigation={navigation} />
-    <FormikPostUploader />
+    <FormikPostUploader navigation ={navigation}/>
 </View>
 
 )
 
 const Header = ({ navigation }) => (
     <View style={styles.headerContainer}>
-    <TouchableOpacity onPress={() => navigation.back('header')}>
+    <TouchableOpacity onPress={() => navigation.goBack(null)}>
       <Image
         source={{
           uri: "https://img.icons8.com/ios-filled/50/ffffff/double-left.png",
